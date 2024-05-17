@@ -28,7 +28,7 @@ CREATE TABLE Prescription (
         REFERENCES Patient (Patient_ID)
 );
 CREATE TABLE Medical_Records (
-	Medical_Records_ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    Medical_Records_ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Patient_ID INT,
     FOREIGN KEY (Patient_Id)
         REFERENCES Patient (Patient_ID),
