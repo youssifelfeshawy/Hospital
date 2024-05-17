@@ -83,11 +83,11 @@ public class Appointment {
 			dbConnection = mc.getconConnection();
 
 			statement = dbConnection.createStatement();
-			String sql = "select * from Appointment";
+			String sql = "Select * FROM Appointment";
 			ResultSet rs = statement.executeQuery(sql);
 
 			while (rs.next()) {
-				list.add(new Appointment(Integer.parseInt(rs.getString("Appt_ID")),
+				list.add(new Appointment(Integer.parseInt(rs.getString("Apt_ID")),
 						Integer.parseInt(rs.getString("Patient_ID")), Integer.parseInt(rs.getString("Doctor_ID")),
 						Integer.parseInt(rs.getString("Room_No")),
 						LocalDate.parse(rs.getString("Appt_Date"), DateTimeFormatter.ofPattern("yyyy-MM-dd")),

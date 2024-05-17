@@ -3,12 +3,12 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.Date;
+//import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
+//import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -57,7 +57,7 @@ public class AppointmentCon implements Initializable {
 	private DatePicker dateDP;
 
 	@FXML
-	private TableColumn<Appointment, Date> dateTC;
+	private TableColumn<Appointment, LocalDate> dateTC;
 
 	@FXML
 	private ComboBox<Integer> doctorIdCB;
@@ -90,7 +90,7 @@ public class AppointmentCon implements Initializable {
 	private TableColumn<Appointment, Integer> roomNumberTC;
 
 	@FXML
-	private TableColumn<Appointment, Time> timeTC;
+	private TableColumn<Appointment, LocalTime> timeTC;
 
 	@FXML
 	private TextField timeTF;
@@ -227,7 +227,7 @@ public class AppointmentCon implements Initializable {
 
 	}
 
-	ObservableList<Appointment> listM;
+	ObservableList<Appointment> list;
 	int index = -1;
 	Connection conn = null;
 	ResultSet rs = null;
@@ -238,11 +238,11 @@ public class AppointmentCon implements Initializable {
 		patientIdTC.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
 		doctorIdTC.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("doctorId"));
 		roomNumberTC.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("roomNumber"));
-		dateTC.setCellValueFactory(new PropertyValueFactory</*Appointment, LocalDate*/>("appointmentDate"));
-		timeTC.setCellValueFactory(new PropertyValueFactory</* Appointment, LocalTime */>("appointmentTime"));
+		dateTC.setCellValueFactory(new PropertyValueFactory<Appointment, LocalDate>("appointmentDate"));
+		timeTC.setCellValueFactory(new PropertyValueFactory<Appointment, LocalTime>("appointmentTime"));
 
-		listM = Appointment.getAppointmentData();
-		appointmentTV.setItems(listM);
+		list = Appointment.getAppointmentData();
+		appointmentTV.setItems(list);
 
 		try {
 			Statement statement;
@@ -255,7 +255,7 @@ public class AppointmentCon implements Initializable {
 			while (rs.next()) {
 				patientIdCB.getItems().add(rs.getInt("Patient_ID"));
 				doctorIdCB.getItems().add(rs.getInt("Doctor_ID"));
-				roomNumberCB.getItems().add(rs.getInt("room_No"));
+				roomNumberCB.getItems().add(rs.getInt("Room_No"));
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(AppointmentCon.class.getName()).log(Level.SEVERE, null, ex);
